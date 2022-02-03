@@ -18,43 +18,100 @@ public class Main {
                 int category = scan.nextInt();
                 if (category == 1) {
                     bkObj.addBook();
-                    bkObj.displayB();
                 }
                 if (category == 2) {
                     srObj.addSeries();
-                    srObj.displayS();
                 }
                 if (category == 3) {
                     mvObj.addMovie();
-                    mvObj.displayM();
                 }
             }
             if (option == 2) {
-                System.out.println("Now Select the type you want to edit:\n1.Book,\n2.Series,\n3.Movie.");
-                int category = scan.nextInt();
-                if (category == 1) {
-                    bkObj.displayB();
-                    System.out.println("select the book number you want to edit:");
-                    int id=scan.nextInt();
-                    bkObj.editB(id);
-                    bkObj.displayB();
-                }
-                if (category == 2) {
-                    srObj.displayS();
-                    System.out.println("select the series number you want to edit:");
-                    int id=scan.nextInt();
-                    srObj.editS(id);
-                    srObj.displayS();
-                }
-                if (category == 3) {
-                    mvObj.displayM();
-                    System.out.println("select the movie number you want to edit:");
-                    int id=scan.nextInt();
-                    mvObj.editM(id);
-                    mvObj.displayM();
+                    System.out.println("Now Select the type you want to edit:\n1.Book,\n2.Series,\n3.Movie.");
+                    int category = scan.nextInt();
+                    if (category == 1) {
+                        bkObj.displayB();
+                        System.out.println("select the book number you want to edit:");
+                        int id = scan.nextInt();
+                        while (true) {
+                            System.out.println("0.go back,\n1.add hours in hour consumption,\n2.add days in day consumption,\n3.change rating.");
+                            if (bkObj.endDate[id - 1].isEmpty()) {
+                                System.out.println("4.add end date");
+                            }
+                            int d = scan.nextInt();
+                            if (d == 1) {
+                                bkObj.editConHour(id);
+                            }
+                            if (d == 2) {
+                                bkObj.editConDay(id);
+                            }
+                            if (d == 3) {
+                                bkObj.editRat(id);
+                            }
+                            if (d == 4) {
+                                if (bkObj.endDate[id - 1].isEmpty())
+                                    bkObj.editEnd(id);
+                            }
+                            if(d==0)
+                                break;
+                        }
+                    }
+                    if (category == 2) {
+                        srObj.displayS();
+                        System.out.println("select the series number you want to edit:");
+                        int id = scan.nextInt();
+                        while (true) {
+                            System.out.println("0.go back,\n1.add hours in hour consumption,\n2.add days in day consumption,\n3.change rating.");
+                            if (srObj.endDate[id - 1].isEmpty()) {
+                                System.out.println("4.add end date");
+                            }
+                            int d = scan.nextInt();
+                            if (d == 1) {
+                                srObj.editConHour(id);
+                            }
+                            if (d == 2) {
+                                srObj.editConDay(id);
+                            }
+                            if (d == 3) {
+                                srObj.editRat(id);
+                            }
+                            if (d == 4) {
+                                if (srObj.endDate[id - 1].isEmpty())
+                                    srObj.editEnd(id);
+                            }
+                            if(d==0)
+                                break;
+                        }
+                    }
+                    if (category == 3) {
+                        mvObj.displayM();
+                        System.out.println("select the movie number you want to edit:");
+                        int id = scan.nextInt();
+                        while (true) {
+                            System.out.println("0.go back,\n1.add hours in hour consumption,\n2.add days in day consumption,\n3.change rating.");
+                            if (mvObj.endDate[id - 1].isEmpty()) {
+                                System.out.println("4.add end date");
+                            }
+                            int d = scan.nextInt();
+                            if (d == 1) {
+                                mvObj.editConHour(id);
+                            }
+                            if (d == 2) {
+                                mvObj.editConDay(id);
+                            }
+                            if (d == 3) {
+                                mvObj.editRat(id);
+                            }
+                            if (d == 4) {
+                                if (mvObj.endDate[id - 1].isEmpty())
+                                    mvObj.editEnd(id);
+                            }
+                            if(d==0)
+                                break;
+                        }
 
+                    }
                 }
-            }
             if (option == 3) {
                 System.out.println("Now Select the type from you want to delete:\n1.Book,\n2.Series,\n3.Movie.");
                 int category = scan.nextInt();
@@ -84,20 +141,38 @@ public class Main {
                 System.out.println("Now Select the type:\n1.Book,\n2.Series,\n3.Movie.");
                 int category = scan.nextInt();
                 if(category==1) {
-                    bkObj.displayB();
-                    int id=scan.nextInt();
-                    bkObj.show(id);
+                    while(true) {
+                        bkObj.displayB();
+                        System.out.println("enter 0 to go back\nSelect the book index to see details:");
+                        int id = scan.nextInt();
+                        if(id==0)
+                            break;
+                        else
+                            bkObj.show(id);
+                    }
 
                 }
                 if (category==2) {
-                    srObj.displayS();
-                    int id=scan.nextInt();
-                    srObj.show(id);
+                    while (true) {
+                        srObj.displayS();
+                        System.out.println("Enter 0 to go back\nSelect the series index to see details:");
+                        int id = scan.nextInt();
+                        if(id==0)
+                            break;
+                        else
+                            srObj.show(id);
+                    }
                 }
                 if (category==3) {
-                    mvObj.displayM();
-                    int id=scan.nextInt();
-                    mvObj.show(id);
+                    while (true) {
+                        mvObj.displayM();
+                        System.out.println("Enter 0 to go back\nSelect the movie index to see details:");
+                        int id = scan.nextInt();
+                        if(id==0)
+                            break;
+                        else
+                            mvObj.show(id);
+                    }
                 }
             }
             if(option==5){

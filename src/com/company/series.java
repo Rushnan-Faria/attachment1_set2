@@ -18,8 +18,14 @@ public class series {
         series[i]=scan.nextLine();
         System.out.println("Enter the start date in the format yyyy-mm-dd:");
         startDate[i]=scan.nextLine();
+        if (startDate[i].isEmpty()){
+            startDate[i]="";
+        }
         System.out.println("Enter the end date in the format yyyy-mm-dd:");
         endDate[i]=scan.nextLine();
+        if (endDate[i].isEmpty()){
+            endDate[i]="";
+        }
         System.out.println("Enter the consumption in hour:");
         consumptionHour[i]=scan.nextFloat();
         total_hour=total_hour+consumptionHour[i];
@@ -31,17 +37,28 @@ public class series {
         total_day=total_day+consumptionDay[i];
         i++;
     }
-    public void editS(int k){
+    public void editConHour(int k){
+        System.out.println("add consumption in hour:");
         int newConHour=scan.nextInt();
         consumptionHour[k-1]=consumptionHour[k-1]+newConHour;
         total_hour=total_hour+newConHour;
+    }
+    public void editConDay(int k){
+        System.out.println("add consumption in day:");
         int newConDay=scan.nextInt();
         consumptionDay[k-1]=consumptionDay[k-1]+newConDay;
         total_day=total_day+newConDay;
+    }
+    public void editRat(int k){
+        System.out.println("new rating:");
         int newRat=scan.nextInt();
         rat=rat-rating[k-1];
         Array.set(rating,k-1,newRat);
         rat=rat+newRat;
+    }
+    public void editEnd(int k){
+        System.out.println("Add end date in the format yyyy-mm-dd:");
+        endDate[k-1]=scan.nextLine();
     }
     public void deleteS(int x){
         int k=x-1;
@@ -68,14 +85,25 @@ public class series {
     }
     public void displayS(){
         System.out.println("list of the series:\n");
+        System.out.println("-----------------------------------------------------------------------------");
+        System.out.printf("%5s %15s %20s %20s %10s", "Index", "Book Name", "Consumption(Hour)", "Consumption(Day)","Rating");
+        System.out.println();
+        System.out.println("-----------------------------------------------------------------------------");
+
         for(j=0;j<i;j++) {
             int p=j+1;
-            System.out.println(p+". "+series[j]  + "\t" + consumptionHour[j] + "\t" + rating[j] + "\t" + consumptionDay[j]);
-        }
+            System.out.format("%5s %15s %20f %20f %10f",
+                    p, series[j],consumptionHour[j],consumptionDay[j],rating[j]);
+            System.out.println();    }
     }
     public void show(int p){
         int id=p-1;
-        System.out.println(series[id] + "\t" + startDate[id] + "\t" + endDate[id] + "\t" + consumptionHour[id] + "\t" + rating[id] + "\t" + consumptionDay[id]);
-
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%20s %15s %15s %18s %18s %6s", "Book Name","Start Date","End Date", "Consumption(Hour)", "Consumption(Day)","Rating");
+        System.out.println();
+        System.out.println("-------------------------------------------------------------------------------------------------------------------------");
+        System.out.format("%20s %15s %15s %18f %18f %6f",
+                series[id],startDate[id],endDate[id],consumptionHour[id],consumptionDay[id],rating[id]);
+        System.out.println();
     }
 }
