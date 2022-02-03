@@ -10,7 +10,7 @@ public class book {
     public static float[] consumptionHour = new float[100];
     public static float[] rating = new float[100];
     public static float[] consumptionDay = new float[100];
-    public static float total_hour=0,total_day=0,avg_rat;
+    public static float total_hour=0,total_day=0,rat=0;
     private static int count=0;
     public static int i=0;
     public void addBook(){
@@ -22,30 +22,34 @@ public class book {
         endDate[i]=scan.nextLine();
         System.out.println("Enter the consumption in hour:");
         consumptionHour[i]=scan.nextFloat();
-        total_hour=+consumptionHour[i];
+        total_hour=total_hour+consumptionHour[i];
         System.out.println("Enter your rating out of 10:");
         rating[i]=scan.nextFloat();
+        rat=rat+rating[i];
         System.out.println("Enter the total day of consumption:");
         consumptionDay[i]=scan.nextFloat();
-        total_day=+consumptionDay[i];
+        total_day=total_day+consumptionDay[i];
         i++;
         count++;
     }
     public void editB(int k){
         System.out.println("add consumption in hour:");
         int newConHour=scan.nextInt();
-        consumptionHour[k-1]=+newConHour;
-        total_hour=+newConHour;
+        consumptionHour[k-1]=consumptionHour[k-1]+newConHour;
+        total_hour=total_hour+newConHour;
         System.out.println("add consumption in day:");
         int newConDay=scan.nextInt();
-        consumptionDay[k-1]=+newConDay;
-        total_day=+newConDay;
+        consumptionDay[k-1]=consumptionDay[k-1]+newConDay;
+        total_day=total_day+newConDay;
         System.out.println("new rating:");
         int newRat=scan.nextInt();
+        rat=rat-rating[k-1];
         Array.set(rating,k-1,newRat);
+        rat=rat+newRat;
     }
     public void deleteB(int x){
         int k=x-1;
+        rat=rat-rating[k];
         for (int j = k; j<i-1; j++) {
             books[j] = books[j+1];
         }
@@ -65,13 +69,6 @@ public class book {
             consumptionDay[j] = consumptionDay[j+1];
         }
         i--;
-    }
-    public void avg_rating() {
-        float rat = 0;
-        for (int p = 0; p < i; p++) {
-            rat = +rating[i];
-        }
-        avg_rat = (rat / count);
     }
     public void displayB(){
         System.out.println("list of the books:\n");

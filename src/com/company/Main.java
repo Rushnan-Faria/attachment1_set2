@@ -4,7 +4,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        float total_consumptionHour,total_consumptionDay,avg_rating,total_number;
+        float total_consumptionHour,total_consumptionDay,avg_rating;
+        int total_number;
         while (true) {
             book bkObj = new book();
             series srObj = new series();
@@ -102,7 +103,6 @@ public class Main {
             if(option==5){
                     total_consumptionHour= bkObj.total_hour+ srObj.total_hour+ mvObj.total_hour;
                     total_consumptionDay= bkObj.total_day+ srObj.total_day+ mvObj.total_day;
-                    avg_rating= (bkObj.avg_rat+ srObj.avg_rat+ mvObj.avg_rat)/3;
                     System.out.println("1.The total consumption in hour across all type: "+total_consumptionHour);
                     System.out.println("2.The total consumption in hour of book: "+bkObj.total_hour);
                     System.out.println("3.The total consumption in hour of series: "+srObj.total_hour);
@@ -111,10 +111,16 @@ public class Main {
                     System.out.println("6.The total days of consumption of book: "+bkObj.total_day);
                     System.out.println("7.The total days of consumption of series: "+srObj.total_day);
                     System.out.println("8.The total days of consumption of movie: "+mvObj.total_day);
+                System.out.println(bkObj.rat);
+                System.out.println(bkObj.i);
+                    float avg_rat1=bkObj.rat/bkObj.i;
+                    float avg_rat2=srObj.rat/srObj.i;
+                    float avg_rat3=mvObj.rat/mvObj.i;
+                    avg_rating= (avg_rat1+avg_rat2+avg_rat3)/3;
                     System.out.println("9.Average rating across all types: "+avg_rating);
-                    System.out.println("2.Average rating of book: "+bkObj.avg_rat);
-                    System.out.println("3.Average rating of series: "+srObj.avg_rat);
-                    System.out.println("4.Average rating of movie: "+mvObj.avg_rat);
+                    System.out.println("2.Average rating of book: "+avg_rat1);
+                    System.out.println("3.Average rating of series: "+avg_rat2);
+                    System.out.println("4.Average rating of movie: "+avg_rat3);
                     total_number=bkObj.i+srObj.i+mvObj.i;
                     System.out.println("1.The total consumable across all type: "+total_number);
                     System.out.println("2.The total consumable of book: "+bkObj.i);

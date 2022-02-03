@@ -11,10 +11,10 @@ public class movie {
     public static float[] rating = new float[100];
     public static float[] consumptionDay = new float[100];
     private static int count=0,j;
-    public static float total_hour=0,total_day=0,avg_rat;
+    public static float total_hour=0,total_day=0,rat=0;
     public static int i=0;
     public void addMovie(){
-        System.out.println("Enter the book name:");
+        System.out.println("Enter the movie name:");
         movie[i]=scan.nextLine();
         System.out.println("Enter the start date in the format yyyy-mm-dd:");
         startDate[i]=scan.nextLine();
@@ -22,26 +22,30 @@ public class movie {
         endDate[i]=scan.nextLine();
         System.out.println("Enter the consumption in hour:");
         consumptionHour[i]=scan.nextFloat();
-        total_hour=+consumptionHour[i];
+        total_hour=total_hour+consumptionHour[i];
         System.out.println("Enter your rating out of 10:");
         rating[i]=scan.nextFloat();
+        rat=rat+rating[i];
         System.out.println("Enter the total day of consumption:");
         consumptionDay[i]=scan.nextFloat();
-        total_day=+consumptionDay[i];
+        total_day=total_day+consumptionDay[i];
         i++;
     }
     public void editM(int k){
         int newConHour=scan.nextInt();
-        consumptionHour[k-1]=+newConHour;
+        consumptionHour[k-1]=consumptionHour[k-1]+newConHour;
         int newConDay=scan.nextInt();
-        consumptionDay[k-1]=+newConDay;
+        consumptionDay[k-1]=consumptionDay[k-1]+newConDay;
         int newRat=scan.nextInt();
+        rat=rat-rating[k-1];
         Array.set(rating,k-1,newRat);
-        total_hour=+newConHour;
-        total_day=+newConDay;
+        rat=rat+newRat;
+        total_hour=total_hour+newConHour;
+        total_day=total_day+newConDay;
     }
     public void deleteM(int x){
         int k=x-1;
+        rat=rat-rating[k];
         for (int j = k; j<i-1; j++) {
             movie[j] = movie[j+1];
         }
@@ -61,13 +65,6 @@ public class movie {
             consumptionDay[j] = consumptionDay[j+1];
         }
         i--;
-    }
-    public void avg_rating(){
-        float rat=0;
-        for(int p=0;p<i;p++){
-            rat=+rating[i];
-        }
-        avg_rat=(rat/count);
     }
     public void displayM(){
        System.out.println("list of the movies:\n");
