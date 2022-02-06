@@ -8,6 +8,7 @@ public class book {
     public static String[] startDate = new String[100];
     public static String[] endDate = new String[100];
     public static float[] consumptionHour = new float[100];
+    public static String[] tempRating = new String[100];
     public static float[] rating = new float[100];
     public static float[] consumptionDay = new float[100];
     public static float total_hour=0,total_day=0,rat=0;
@@ -16,6 +17,9 @@ public class book {
     public void addBook(){
         System.out.println("Enter the book name:");
         books[i]=scan.nextLine();
+        while(books[i].isEmpty()) {
+            books[i] = scan.nextLine();
+        }
         System.out.println("Enter the start date in the format yyyy-mm-dd:");
         startDate[i]=scan.nextLine();
         if (startDate[i].isEmpty()){
@@ -30,7 +34,14 @@ public class book {
         consumptionHour[i]=scan.nextFloat();
         total_hour=total_hour+consumptionHour[i];
         System.out.println("Enter your rating out of 10:");
-        rating[i]=scan.nextFloat();
+        tempRating[i]=scan.nextLine();
+        tempRating[i]=scan.nextLine();
+        if (tempRating[i].isEmpty()){
+            rating[i]=0;
+        }
+        else {
+            rating[i] = Float.parseFloat(tempRating[i]);
+        }
         rat=rat+rating[i];
         System.out.println("Enter the total day of consumption:");
         consumptionDay[i]=scan.nextFloat();
@@ -40,21 +51,22 @@ public class book {
     }
     public void editConHour(int k){
         System.out.println("add consumption in hour:");
-        int newConHour=scan.nextInt();
+        Float newConHour=scan.nextFloat();
         consumptionHour[k-1]=consumptionHour[k-1]+newConHour;
         total_hour=total_hour+newConHour;
     }
     public void editConDay(int k){
         System.out.println("add consumption in day:");
-        int newConDay=scan.nextInt();
+        Float newConDay=scan.nextFloat();
         consumptionDay[k-1]=consumptionDay[k-1]+newConDay;
         total_day=total_day+newConDay;
     }
     public void editRat(int k){
         System.out.println("new rating:");
-        int newRat=scan.nextInt();
+        Float newRat=scan.nextFloat();
         rat=rat-rating[k-1];
         Array.set(rating,k-1,newRat);
+        tempRating[k-1]=Float.toString(newRat);
         rat=rat+newRat;
     }
     public void editEnd(int k){
@@ -85,27 +97,27 @@ public class book {
         i--;
     }
     public void displayB(){
-        System.out.println("list of the books:\n");
-        System.out.println("-----------------------------------------------------------------------------");
-        System.out.printf("%5s %15s %20s %20s %10s", "Index", "Book Name", "Consumption(Hour)", "Consumption(Day)","Rating");
+        System.out.println("list of the book(s):\n");
+        System.out.println("-------------------------------------------------------------------------------------------------");
+        System.out.printf("%5s %30s %20s %20s %10s", "Index", "Book Name", "Consumption(Hour)", "Consumption(Day)","Rating");
         System.out.println();
-        System.out.println("-----------------------------------------------------------------------------");
+        System.out.println("-------------------------------------------------------------------------------------------------");
 
         for(int j=0;j<i;j++) {
             int p=j+1;
-            System.out.format("%5s %15s %20f %20f %10f",
-                    p,books[j],consumptionHour[j],consumptionDay[j],rating[j]);
+            System.out.format("%5s %30s %20f %20f %10s",
+                    p,books[j],consumptionHour[j],consumptionDay[j],tempRating[j]);
             System.out.println();
         }
     }
     public void show(int p){
         int id=p-1;
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%20s %15s %15s %18s %18s %6s", "Book Name","Start Date","End Date", "Consumption(Hour)", "Consumption(Day)","Rating");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%30s %15s %15s %18s %18s %6s", "Book Name","Start Date","End Date", "Consumption(Hour)", "Consumption(Day)","Rating");
         System.out.println();
-        System.out.println("-------------------------------------------------------------------------------------------------------------------------");
-        System.out.format("%20s %15s %15s %18f %18f %6f",
-                books[id],startDate[id],endDate[id],consumptionHour[id],consumptionDay[id],rating[id]);
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.format("%30s %15s %15s %18f %18f %6s",
+                books[id],startDate[id],endDate[id],consumptionHour[id],consumptionDay[id],tempRating[id]);
         System.out.println();
     }
 }

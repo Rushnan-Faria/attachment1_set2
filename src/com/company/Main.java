@@ -14,21 +14,28 @@ public class Main {
             Scanner scan = new Scanner(System.in);
             int option = scan.nextInt();
             if (option == 1) {
-                System.out.println("Now Select the type of consumable you want to add:\n1.Book,\n2.Series,\n3.Movie.");
-                int category = scan.nextInt();
-                if (category == 1) {
-                    bkObj.addBook();
-                }
-                if (category == 2) {
-                    srObj.addSeries();
-                }
-                if (category == 3) {
-                    mvObj.addMovie();
+                while (true) {
+                    System.out.println("Now Select the type of consumable you want to add:\n0.Main menu\n1.Book,\n2.Series,\n3.Movie.");
+                    int category = scan.nextInt();
+                    if(category==0)
+                        break;
+                    if (category == 1) {
+                            bkObj.addBook();
+                    }
+                    if (category == 2) {
+                        srObj.addSeries();
+                    }
+                    if (category == 3) {
+                        mvObj.addMovie();
+                    }
                 }
             }
             if (option == 2) {
-                    System.out.println("Now Select the type you want to edit:\n1.Book,\n2.Series,\n3.Movie.");
+                while (true) {
+                    System.out.println("Now Select the type you want to edit:\n0.Main Menu\n1.Book,\n2.Series,\n3.Movie.");
                     int category = scan.nextInt();
+                    if(category==0)
+                        break;
                     if (category == 1) {
                         bkObj.displayB();
                         System.out.println("select the book number you want to edit:");
@@ -52,7 +59,7 @@ public class Main {
                                 if (bkObj.endDate[id - 1].isEmpty())
                                     bkObj.editEnd(id);
                             }
-                            if(d==0)
+                            if (d == 0)
                                 break;
                         }
                     }
@@ -79,7 +86,7 @@ public class Main {
                                 if (srObj.endDate[id - 1].isEmpty())
                                     srObj.editEnd(id);
                             }
-                            if(d==0)
+                            if (d == 0)
                                 break;
                         }
                     }
@@ -106,72 +113,95 @@ public class Main {
                                 if (mvObj.endDate[id - 1].isEmpty())
                                     mvObj.editEnd(id);
                             }
-                            if(d==0)
+                            if (d == 0)
                                 break;
                         }
 
                     }
                 }
+                }
             if (option == 3) {
-                System.out.println("Now Select the type from you want to delete:\n1.Book,\n2.Series,\n3.Movie.");
-                int category = scan.nextInt();
-                if (category == 1) {
-                    bkObj.displayB();
-                    System.out.println("select the book number you want to delete:");
-                    int id=scan.nextInt();
-                    bkObj.deleteB(id);
-                    bkObj.displayB();
-                }
-                if (category == 2) {
-                    srObj.displayS();
-                    System.out.println("select the book number you want to delete:");
-                    int id=scan.nextInt();
-                    srObj.deleteS(id);
-                    srObj.displayS();
-                }
-                if (category == 3) {
-                    mvObj.displayM();
-                    System.out.println("select the book number you want to delete:");
-                    int id=scan.nextInt();
-                    mvObj.deleteM(id);
-                    mvObj.displayM();
+                while (true) {
+                    System.out.println("Now Select the type from you want to delete:\n0.Main Menu\n1.Book,\n2.Series,\n3.Movie.");
+                    int category = scan.nextInt();
+                    if (category==0)
+                        break;
+                    if (category == 1) {
+                        while(true) {
+                            bkObj.displayB();
+                            System.out.println("select the book number you want to delete or 0 to go back:");
+                            int id = scan.nextInt();
+                            if(id==0)
+                                break;
+                            else {
+                                bkObj.deleteB(id);
+                                bkObj.displayB();
+                            }
+                        }
+                    }
+                    if (category == 2) {
+                        srObj.displayS();
+                        System.out.println("select the book number you want to delete or 0 to go back:");
+                        int id = scan.nextInt();
+                        if(id==0)
+                            break;
+                        else {
+                            srObj.deleteS(id);
+                            srObj.displayS();
+                        }
+                    }
+                    if (category == 3) {
+                        mvObj.displayM();
+                        System.out.println("select the book number you want to delete or 0 to go back:");
+                        int id = scan.nextInt();
+                        if(id==0)
+                            break;
+                        else {
+                            mvObj.deleteM(id);
+                            mvObj.displayM();
+                        }
+                    }
                 }
             }
             if(option==4){
-                System.out.println("Now Select the type:\n1.Book,\n2.Series,\n3.Movie.");
-                int category = scan.nextInt();
-                if(category==1) {
-                    while(true) {
-                        bkObj.displayB();
-                        System.out.println("enter 0 to go back\nSelect the book index to see details:");
-                        int id = scan.nextInt();
-                        if(id==0)
-                            break;
-                        else
-                            bkObj.show(id);
-                    }
+                while (true) {
+                    System.out.println("Now Select the type:\n0.Main Menu\n1.Book,\n2.Series,\n3.Movie.");
+                    int category = scan.nextInt();
+                    if (category==0)
+                        break;
+                    if (category == 1) {
+                        while (true) {
+                            bkObj.displayB();
+                            System.out.println("enter 0 to go back or Select the book index to see details:");
+                            int id = scan.nextInt();
+                            if (id == 0)
+                                break;
+                            else
+                                bkObj.show(id);
+                        }
 
-                }
-                if (category==2) {
-                    while (true) {
-                        srObj.displayS();
-                        System.out.println("Enter 0 to go back\nSelect the series index to see details:");
-                        int id = scan.nextInt();
-                        if(id==0)
-                            break;
-                        else
-                            srObj.show(id);
                     }
-                }
-                if (category==3) {
-                    while (true) {
-                        mvObj.displayM();
-                        System.out.println("Enter 0 to go back\nSelect the movie index to see details:");
-                        int id = scan.nextInt();
-                        if(id==0)
-                            break;
-                        else
-                            mvObj.show(id);
+                    if (category == 2) {
+                        while (true) {
+                            srObj.displayS();
+                            System.out.println("Enter 0 to go back or Select the series index to see details:");
+                            int id = scan.nextInt();
+                            if (id == 0)
+                                break;
+                            else
+                                srObj.show(id);
+                        }
+                    }
+                    if (category == 3) {
+                        while (true) {
+                            mvObj.displayM();
+                            System.out.println("Enter 0 to go back or Select the movie index to see details:");
+                            int id = scan.nextInt();
+                            if (id == 0)
+                                break;
+                            else
+                                mvObj.show(id);
+                        }
                     }
                 }
             }
