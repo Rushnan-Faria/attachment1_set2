@@ -216,8 +216,6 @@ public class Main {
                     System.out.println("6.The total days of consumption of book: "+bkObj.total_day);
                     System.out.println("7.The total days of consumption of series: "+srObj.total_day);
                     System.out.println("8.The total days of consumption of movie: "+mvObj.total_day);
-                System.out.println(bkObj.rat);
-                System.out.println(bkObj.i);
                     float avg_rat1=bkObj.rat/bkObj.i;
                     float avg_rat2=srObj.rat/srObj.i;
                     float avg_rat3=mvObj.rat/mvObj.i;
